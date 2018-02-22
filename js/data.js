@@ -1,10 +1,8 @@
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
-      {'link':'<a href="/post/1.html" target="_blank" class="am-list-item-hd ">htaccess伪静态实例分享</a>'},
-      {'link':'<a href="/post/2.html" target="_blank" class="am-list-item-hd ">六十一新开始！</a>'},  
-      {'link':''}, 	  
-      {'link':''}	  
+    {'link':'<a href="/post/6.html" target="_blank">对不起,给不了你想要的幸福！</a>'}, 
+    {'link':'<a href="/post/9.html" target="_blank">因为喜欢你</a>'},
 ];  
   
 document.getElementById('jl').innerHTML = json2html.transform(data,transform);  
@@ -12,8 +10,8 @@ document.getElementById('jl').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
-      {'link':'<a href="https://pan.baidu.com/s/1miIppVU" target="_blank" class="am-list-item-hd "> [清水ユウ]甘美男子</a>'}, 	 	  
-      {'link':''}	  
+    {'link':'<a href="/post/7.html" target="_blank">javascript实现文章列表li 分页</a>'},  
+    {'link':'<a href="/post/1.html" target="_blank">如何让markdown编辑器代码高亮</a>'},  
 ];  
   
 document.getElementById('js').innerHTML = json2html.transform(data,transform);  
@@ -21,9 +19,10 @@ document.getElementById('js').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
-      {'link':'<a href="https://pan.baidu.com/s/1snbpwQx" target="_blank" class="am-list-item-hd ">【在许墨怀里】分享-各类耽美文合集</a>'}, 
-      {'link':''}, 		  
-      {'link':''}	  
+    {'link':'<a href="/post/2.html" target="_blank">替换原版MiniCMS订阅RSS代码</a>'},  
+    {'link':'<a href="/post/5.html" target="_blank">纯JS版本伪春菜</a>'},
+    {'link':'<a href="/post/4.html" target="_blank">Nginx永久301跳转https写法</a>'},  
+    {'link':'<a href="/post/3.html" target="_blank">JavaScript实现强制重定向至HTTPS页面</a>'},  
 ];  
   
 document.getElementById('wz').innerHTML = json2html.transform(data,transform);  
@@ -31,8 +30,7 @@ document.getElementById('wz').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
-      {'link':''}, 	  
-      {'link':''}	  
+    {'link':'<a href="/post/8.html" target="_blank">Typecho评论框代码/CSS</a>'}, 
 ];  
   
 document.getElementById('ty').innerHTML = json2html.transform(data,transform);  

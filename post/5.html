@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>纯JS版本伪春菜 - 夏目贵志</title><!-- 自己修改标题 -->
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">纯JS版本伪春菜</h1>
+                 <p class="am-article-meta">2017年4月19日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+>嗯，之前看到别人站上右下角有一可爱的插件
+百度一下，叫伪春菜，是WP插件[http://www.lmyoaoa.com/inn/archives/category/wp-weichuncai/]
+看了下，功能太强大了，有点吃不消，所以改写了一个简单的纯JS的版本
+功能相对要弱很多，但是却够用了
+
+使用方法：
+---
+1. 下载插件到任意目录
+1. 在要使用的页面中 引用 `js/weichuncai.min.js `, `images/style.css` 和 jq库
+1. 再在页面底部加入,以下代码：
+```html    
+<div id="chuncai">
+	<div class="tips">
+		<span>默认内容 --- <a href="http://y2sky.com" target="_blank">燕儿天空</a>
+	</div>
+</div>
+<script>
+	var talkself = 20;  //自言自语频率,秒
+	var chuncai = [
+		["白日依山尽，黄河入海流，欲穷千里目，更上.....一层楼？", "1"],
+		["我看见主人熊猫眼又加重了！", "3"],
+		["我是不是很厉害呀～～？", "2"],
+		["5555...昨天有个小孩子跟我抢棒棒糖吃.....", "3"],
+		["昨天我好像看见主人又在众人之前卖萌了哦～", "2"]
+	];
+</script>
+```
+其中 内容可以随心换，后面的数字是表情 1.2.3 暂时只有这3个表情了....
+
+效果图:
+---
+![](https://ws1.sinaimg.cn/large/006eY07Igy1fes6jpuqulj308f05ft97.jpg)
+
+下载地址：http://pan.baidu.com/s/1wyzHN
+===
+
+
+>转载自:http://y2sky.com/weichuncai.html
+                    </xmp>
+                </div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>

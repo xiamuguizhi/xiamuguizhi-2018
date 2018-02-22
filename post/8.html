@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Typecho评论框代码/CSS - 夏目贵志</title><!-- 自己修改标题 -->
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">Typecho评论框代码/CSS</h1>
+                 <p class="am-article-meta">2018年2月8日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+自从多说倒闭之后感觉还是自带评论靠谱一点,不过自己做模板不会写评论代码,就直接扣了一个！
+
+##comments.php 代码如下:
+```php
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<div id="comments">
+    <?php $this->comments()->to($comments); ?>
+    <?php if ($comments->have()): ?>
+	<h3><?php $this->commentsNum(_t('暂无评论'), _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
+    
+    <?php $comments->listComments(); ?>
+
+    <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+    
+    <?php endif; ?>
+
+    <?php if($this->allow('comment')): ?>
+    <div id="<?php $this->respondId(); ?>" class="respond">
+        <div class="cancel-comment-reply">
+        <?php $comments->cancelReply(); ?>
+        </div>
+    
+    	<h3 id="response"><?php _e('添加新评论'); ?></h3>
+    	<form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
+            <?php if($this->user->hasLogin()): ?>
+    		<p><?php _e('登录身份: '); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
+            <?php else: ?>
+    		<p>
+                <label for="author" class="required"><?php _e('称呼'); ?></label>
+    			<input type="text" name="author" id="author" class="text" value="<?php $this->remember('author'); ?>" required />
+    		</p>
+    		<p>
+                <label for="mail"<?php if ($this->options->commentsRequireMail): ?> class="required"<?php endif; ?>><?php _e('Email'); ?></label>
+    			<input type="email" name="mail" id="mail" class="text" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
+    		</p>
+    		<p>
+                <label for="url"<?php if ($this->options->commentsRequireURL): ?> class="required"<?php endif; ?>><?php _e('网站'); ?></label>
+    			<input type="url" name="url" id="url" class="text" placeholder="<?php _e('http://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
+    		</p>
+            <?php endif; ?>
+    		<p>
+                <label for="textarea" class="required"><?php _e('内容'); ?></label>
+                <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required ><?php $this->remember('text'); ?></textarea>
+            </p>
+    		<p>
+                <button type="submit" class="submit"><?php _e('提交评论'); ?></button>
+            </p>
+    	</form>
+    </div>
+    <?php else: ?>
+    <h3><?php _e('评论已关闭'); ?></h3>
+    <?php endif; ?>
+</div>
+
+```
+CSS代码如下:
+```css
+
+        #comments {
+            padding-top: 15px;
+        }
+
+        .comment-list,
+        .comment-list ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .comment-list li {
+            padding: 14px;
+            margin-top: 10px;
+            border: 1px solid #EEE;
+        }
+
+        .comment-list li.comment-level-odd {
+            background: #F6F6F3;
+        }
+
+        .comment-list li.comment-by-author {
+            background: #FFF9E8;
+        }
+
+        .comment-list li .comment-reply {
+            text-align: right;
+            font-size: .92857em;
+        }
+
+        .comment-meta a {
+            color: #999;
+            font-size: .92857em;
+        }
+
+        .comment-author {
+            display: block;
+            margin-bottom: 3px;
+            color: #444
+        }
+
+        .comment-author .avatar {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .comment-author cite {
+            font-weight: 700;
+            font-style: normal
+        }
+
+        .comment-list .respond {
+            margin-top: 15px;
+            border-top: 1px solid #EEE;
+        }
+
+        .respond .cancel-comment-reply {
+            float: right;
+            margin-top: 15px;
+            font-size: .92857em;
+        }
+
+        #comment-form label {
+            display: block;
+            margin-bottom: .5em;
+            font-weight: 700
+        }
+
+        #comment-form .required:after {
+            content: " *";
+            color: #C00;
+        }
+
+        .page-navigator {
+            list-style: none;
+            margin: 25px 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .page-navigator li {
+            display: inline-block;
+            margin: 0 4px;
+        }
+
+        .page-navigator a {
+            display: inline-block;
+            padding: 0 10px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .page-navigator a:hover {
+            background: #EEE;
+            text-decoration: none；
+        }
+
+        .page-navigator .current a {
+            color: #444;
+            background: #EEE;
+        }
+
+```
+![效果图](http://ww1.sinaimg.cn/large/b07e5053gy1focdgp4p6kj20lc0l5wen.jpg)
+                    </xmp>
+                </div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>

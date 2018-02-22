@@ -3,16 +3,15 @@
 
 <head lang="en">
     <meta charset="UTF-8">
-    <title>htaccess伪静态实例分享 - 夏目贵志</title><!-- 自己修改标题 -->
+    <title>替换原版MiniCMS订阅RSS代码 - 夏目贵志</title><!-- 自己修改标题 -->
     <script type="text/javascript" src="../js\head.js"></script>
 </head>
-
 <body>
     <div class="header">
         <div class="am-g">
-            <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
-                <h1 class="am-article-title">htaccess伪静态实例分享</h1>
-                 <p class="am-article-meta">2018年2月21日</p>
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">替换原版MiniCMS订阅RSS代码</h1>
+                 <p class="am-article-meta">2017年4月22日</p>
         </div>
     </div>
     <div class="am-g am-g-fixed blog-g-fixed">
@@ -20,45 +19,46 @@
             <article class="am-article">
                 <div class="am-article-bd">
                     <xmp>
-利用.htaccess实现伪静态功能在web开发中应该是经常用到的，下面作者总结了一些比较常用的利用.htaccess实现伪静态的实例和大家分享。
+###代码如下:
+``` xml
+<?php header("Content-Type: application/xml");
+echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+>
+<channel>
+  <title><?php mc_site_name(); ?></title>
+  <link><?php mc_site_link(''); ?></link>
+  <description><?php mc_site_desc(); ?></description>
+  <language>zh_CN</language>
+  <sy:updatePeriod>hourly</sy:updatePeriod>
+  <sy:updateFrequency>1</sy:updateFrequency>
+  <generator>http://www.mcblog.org/</generator>
+<?php while (mc_next_post()) { ?>
+    <item>
+      <title><?php mc_the_title(); ?></title>
+      <link><?php mc_the_url(); ?></link>
+      <guid><?php mc_the_url(); ?></guid>
+      <dc:creator><?php mc_nick_name(); ?></dc:creator>
+      <pubDate><?php mc_the_date(); ?> <?php mc_the_time(); ?></pubDate>
+      <?php mc_the_tags("<category><![CDATA[", "\n", "]]></category>",false); echo "\n"; ?>
+      <content:encoded><![CDATA[<?php mc_the_content();?>]]></content:encoded>
+    </item>
+<?php } ?>
+</channel>
+</rss>
 
-（1）将 `index.php` 伪静态成为 `index.html`
-
-`RewriteRule ^index\.html$ index.php`
-
-（2）将` news/info.php?id=3 ` 伪静态成为 ` news/info_3.html`
-
-`RewriteRule ^news/info_([0-9]{1,})\.html$ news/info.php?id=$1`
-
-（3）将 `index.php?class_id=2&id=3 ` `伪静态成为 2-3.html`
 ```
-RewriteRule ([0-9]{1,})-([0-9]{1,})\.html$ index.php?class_id=$1&id=$2
-([0-9]{1,})-([0-9]{1,})\.html$是规则，index.php?action=$1&id=$2是要替换的url格式，$1代表第一个括号匹配的值，$2代表第二个，如此类推。
-```
-（4）将 tag.php?tag=php教程 或者 tag.php?tag=程序员 伪静态成为 tag/php教程 和 tag/程序员
-
-`RewriteRule ^tag/(.*)$ tag.php?tag=$1`
-
-（5）设置 404 跳转
-
-`ErrorDocument 404 http://www.phpernote.com/404.html`
-
-（6）禁止直接访问web目录中的后缀名为 .bak .inc 的文件
-
-```
-<FilesMatch "\.(bak|inc)$">  
-
-    order deny,allow  
-
-    deny from all  
-
-</FilesMatch>
-```
-转载自:php程序员的笔记 
-永久地址：http://www.phpernote.com/seo/788.html
+####原本默认的会乱码,然后直接搬<a href="https://github.com/Tokinx/McBlog" target="_blank">MC-BLOG</a>的代码了
                     </xmp>
                 </div>
             </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
             <script type="text/javascript" src="../js\footer.js"></script>
 </body>
 <script type="text/javascript" src="../js\strapdown.min.js"></script>
