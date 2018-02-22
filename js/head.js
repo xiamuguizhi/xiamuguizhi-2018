@@ -5,8 +5,8 @@ document.writeln("    <meta name=\'format-detection\' content=\'telephone=no\'>"
 document.writeln("    <meta name=\'renderer\' content=\'webkit\'>");
 document.writeln("    <meta http-equiv=\'Cache-Control\' content=\'no-siteapp\' />");
 document.writeln("    <link rel=\'alternate icon\' type=\'image/jpg\' href=\'https://avatars1.githubusercontent.com/u/27282832?v=4\'>");
-document.writeln("    <link rel=\'stylesheet\' href=\'http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css\' />");
-document.writeln("    <link rel=\'stylesheet\' href=\'http://s.amazeui.org/assets/2.x/css/amaze.min.css?v=ivneioml\' />");
+document.writeln("    <link href=\'https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css\' rel=\'stylesheet\'>");
+document.writeln("    <link href=\'https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.css\' rel=\'stylesheet\'>");
 document.writeln("    <style>");
 document.writeln("#cd {");
 document.writeln("	position: fixed;");
