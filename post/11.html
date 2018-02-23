@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Typecho 自定义分页样式 - 夏目贵志</title><!-- 自己修改标题 -->
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">Typecho 自定义分页样式</h1>
+                 <p class="am-article-meta">2018年2月23日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+增加更加多样的分页输出样式选项，包括  
+`wrapTag` 外层包裹标签名，默认ol  
+`wrapClass` 外层包裹类名  
+`itemTag `内层标签名， 默认li  
+`textTag `直接输出文字的标签名  
+`currentClass `当前聚焦类名  
+`prevClass` 上一页类名  
+`nextClass` 下一页类名  
+方法一：  
+```php
+<?php $this->pageNav('«', '»', 3, '...', array('wrapTag' => 'ol', 'wrapClass' => 'page-navigator', 'itemTag' => 'li', 'textTag' => 'span', 'currentClass' => 'current', 'prevClass' => 'prev', 'nextClass' => 'next')); ?>
+```
+方法二：  
+```php
+<?php $this->pageNav('«', '»', 3, '...', 'wrapTag=ol&wrapClass=page-navigator&itemTag=li&textTag=span¤tClass=current&prevClass=prev&nextClass=next'); ?>
+```
+以上两种方式都可以(由@9527提供)  
+`«$prev` 上一页文字  
+`»$next `下一页文字  
+`3$splitPage `分割范围(分几页)  
+`...$splitWord `分割字符  
+                    </xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>https://www.lvtao.net/web/666.html</div>
+                </div>
+                <div id="SOHUCS" sid="#" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>

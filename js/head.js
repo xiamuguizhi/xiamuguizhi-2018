@@ -6,7 +6,6 @@ document.writeln("    <meta name=\'renderer\' content=\'webkit\'>");
 document.writeln("    <meta http-equiv=\'Cache-Control\' content=\'no-siteapp\' />");
 document.writeln("    <link rel=\'alternate icon\' type=\'image/jpg\' href=\'https://ws1.sinaimg.cn/large/b07e5053gy1fopcjwxvrlj205k05kq2v.jpg\'>");
 document.writeln("    <link href=\'https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css\' rel=\'stylesheet\'>");
-document.writeln("    <link href=\'https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.css\' rel=\'stylesheet\'>");
 document.writeln("    <style>");
 document.writeln("#cd {");
 document.writeln("	position: fixed;");

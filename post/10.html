@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS控制文字只显示一行,超出部分显示省略号 - 夏目贵志</title><!-- 自己修改标题 -->
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">CSS控制文字只显示一行,超出部分显示省略号</h1>
+                 <p class="am-article-meta">2018年2月23日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+```html
+<style type="text/css"> 
+p,div,ul,li,h1,h2,h3,h4,h5,h6,dd,dl,dt{ 
+    width: 100px; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+} 
+</style> 
+<p title="最短的一字网名最新版 很特别的一个字的网名大全">最短的一字网名最新版 很特别的一个字的网名大全</p>
+ ```  
+                 </xmp>
+                </div>
+                <div id="SOHUCS" sid="10" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
