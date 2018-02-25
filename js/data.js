@@ -20,7 +20,8 @@ document.getElementById('js').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
-    {'link':'<a href="/post/5.html" target="_blank">纯JS版本伪春菜</a>'},
+    {'link':'<a href="/post/12.html" target="_blank">Brackets编辑器使用</a>'},
+    {'link':'<a href="/post/5.html" target="_blank">纯JS版本伪春菜</a>'},	
     {'link':'<a href="/post/4.html" target="_blank">Nginx永久301跳转https写法</a>'},  
     {'link':'<a href="/post/3.html" target="_blank">JavaScript实现强制重定向至HTTPS页面</a>'}, 
     {'link':'<a href="/post/2.html" target="_blank">替换原版MiniCMS订阅RSS代码</a>'},  	
