@@ -32,8 +32,18 @@ document.getElementById('wz').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
-	{'link':'<a href="/post/11.html" target="_blank">Typecho 自定义分页样式</a>'},
+    {'link':'<a href="/post/11.html" target="_blank">Typecho 自定义分页样式</a>'},
     {'link':'<a href="/post/8.html" target="_blank">Typecho评论框代码/CSS</a>'}, 
 ];  
   
 document.getElementById('ty').innerHTML = json2html.transform(data,transform);  
+
+var transform = {'tag':'li','html':'${link}'};  
+  
+var data = [  
+    {'link':'<a href="/post/15.html" target="_blank">Linux_修改hosts</a>'},	
+    {'link':'<a href="/post/14.html" target="_blank">deepin 搭建php开发环境（安装phalcon扩展）</a>'},
+    {'link':'<a href="/post/13.html" target="_blank">deepin的自动代理设置方法</a>'},	
+];  
+  
+document.getElementById('dp').innerHTML = json2html.transform(data,transform);  
