@@ -41,6 +41,7 @@ document.getElementById('ty').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
+    {'link':'<a href="/post/16.html" target="_blank"> 打造前端 Deepin Linux 工作环境——配置 XAMPP 集成环境</a>'},	  
     {'link':'<a href="/post/15.html" target="_blank">Linux_修改hosts</a>'},	
     {'link':'<a href="/post/14.html" target="_blank">deepin 搭建php开发环境（安装phalcon扩展）</a>'},
     {'link':'<a href="/post/13.html" target="_blank">deepin的自动代理设置方法</a>'},	
