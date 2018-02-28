@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>deepin的自动代理设置方法 - 夏目贵志</title><!-- 自己修改标题 -->
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">deepin的自动代理设置方法</h1>
+                 <p class="am-article-meta">2018年02月28日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+ 连接好ss-qt后，还需要设置代理才生效，未免每次都去打开手动设置的麻烦，可以用pac文件实现自动代理。
+
+文件可以在github找也可以自己生成，安装genpac就可以自己生成了。
+
+##安装pip后安装genpac：
+```sudo apt install python3-pip```
+
+```sudo pip3 install genpac```
+
+##生成pac文件：
+```genpac --pac-compress --pac-proxy 'SOCKS5 127.0.0.1:1080' --format pac  -o ~/auto.pac```
+
+这里注意指定的端口与你的ss本地端口一致，我这是1080端口。
+
+##在deepin的 设置--网络--系统代理--自动 填入pac文件位置：
+```file:///home/登录用户名/auto.pac```
+
+##大功告成，可以愉快的玩耍了。。。
+
+![deepin](https://bbs.deepin.org/data/attachment/forum/201802/28/154549nnhhtpe1n0mmvvgm.png)       
+                    </xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>https://bbs.deepin.org/forum.php?mod=viewthread&tid=153663&extra=</div>
+                </div>
+                <div id="SOHUCS" sid="13" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
