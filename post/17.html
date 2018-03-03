@@ -1,24 +1,38 @@
-引言：自己动手才能丰衣足食，腾达U3无线网卡成功在4.14内核下驱动，过程做个备忘，供参考。</br>
-再也不用厂商提供的驱动在4.4内核下凑合了。本安装使用DKMS，故系统更新从4.9内核升级到4.14依然不影响无线网卡的正常工作。</br>
-本驱动支持RTL8188E/RTL8812A/RTL8821A/RTL8192E系列 有bug可以去github提交</br>
-其它系列USB无线网卡请参考https://bbs.deepin.org/forum.php?mod=viewthread&tid=153154</br>
-</br>
+引言：自己动手才能丰衣足食，腾达U3无线网卡成功在4.14内核下驱动，过程做个备忘，供参考。
+
+再也不用厂商提供的驱动在4.4内核下凑合了。本安装使用DKMS，故系统更新从4.9内核升级到4.14依然不影响无线网卡的正常工作。
+
+本驱动支持RTL8188E/RTL8812A/RTL8821A/RTL8192E系列 有bug可以去github提交
+
+其它系列USB无线网卡请参考https://bbs.deepin.org/forum.php?mod=viewthread&tid=153154
+
 腾达U3    硬件ID：【0BDA：818B】     话外：使用官网驱动也支持OSX 10.13 High sierra
+
 ```shell sudo apt-get install git build-essential dkms -y```
+
 ```shell sudo git clone git://github.com/Mange/rtl8192eu-linux-driver.git /usr/src/rtl8192eu-1.0  ```
+
 ```shell sudo dkms add rtl8192eu/1.0```
+
 ```shell sudo dkms install rtl8192eu/1.0```
-```shell sudo gedit /etc/modules```</br>
-在bbswitch下面一行输入8192eu保存并重启系统使驱动生效，使用如下命令查看是否驱动成功。</br>
+
+```shell sudo gedit /etc/modules```
+在bbswitch下面一行输入8192eu保存并重启系统使驱动生效，使用如下命令查看是否驱动成功.
+
 ```shell sudo lshw -c network```
+
 ![此处输入图片的描述][1]
 系统设置点击更新到4.14内核下网卡正常驱动，无痛升级。
 ![此处输入图片的描述][2]
 
 备注：包含在下面列表内的设备再尝试使用本贴方法
+
 驱动支持RTL8188E/RTL8812A/RTL8821A/RTL8192E系列 有bug可以去github提交
+
 Linux使用命令查看VID&PID:   ifconfig   iwconfig  lsusb  lspci|grep -i ethernet
+
 Windows使用设备管理器查看VID&PID
+
     VID,PID[厂商编号，产品编号]
 
 RTL8188E
