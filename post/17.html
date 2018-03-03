@@ -1,3 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Realtek瑞昱RTL系列USB无线网卡驱动安装 - 夏目贵志</title><!-- 自己修改标题 -->
+    <meta name="description" content="RTL8188E/RTL8812A/RTL8821A/RTL8192E系列USB无线网卡驱动" />   	
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">Realtek瑞昱RTL系列USB无线网卡驱动安装</h1>
+                 <p class="am-article-meta">2018年03月03日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
 引言：自己动手才能丰衣足食，腾达U3无线网卡成功在4.14内核下驱动，过程做个备忘，供参考。
 
 再也不用厂商提供的驱动在4.4内核下凑合了。本安装使用DKMS，故系统更新从4.9内核升级到4.14依然不影响无线网卡的正常工作。
@@ -17,6 +39,7 @@
 ```shell sudo dkms install rtl8192eu/1.0```
 
 ```shell sudo gedit /etc/modules```
+
 在bbswitch下面一行输入8192eu保存并重启系统使驱动生效，使用如下命令查看是否驱动成功.
 
 ```shell sudo lshw -c network```
@@ -36,11 +59,13 @@ Windows使用设备管理器查看VID&PID
     VID,PID[厂商编号，产品编号]
 
 RTL8188E
+       
         0x0BDA, 0x8179 /* 8188EUS */
         0x0BDA, 0x0179 /* 8188ETV */
         0x07B8, 0x8179 /* 8188EUS - Abocom */
 
 RTL8812A
+       
         0x0BDA, 0x8812
         0x0BDA, 0x881A
         0x0BDA, 0x881B
@@ -64,6 +89,7 @@ RTL8812A
         0x2001, 0x3316  /* D-Link - Cameo */
 
 RTL8821A
+       
         0x0BDA, 0x0811
         0x0BDA, 0x0821
         0x0BDA, 0x8822
@@ -79,6 +105,7 @@ RTL8821A
         0x056E, 0x400F /* ELECOM -  ELECOM */
 
 RTL8192E
+       
         0x0BDA, 0x818C
         0x2357, 0x0107  /* TP-Link - Cameo */
         0x2357, 0x0108  /* TP-Link - Cameo */
@@ -89,3 +116,14 @@ RTL8192E
 
   [1]: https://bbs.deepin.org/data/attachment/forum/201802/14/194601eh6xb3goj8xjxxx6.png
   [2]: https://bbs.deepin.org/data/attachment/forum/201802/15/014824cy66cfofymoj2mrm.png
+                    </xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>https://bbs.deepin.org/forum.php?mod=viewthread&tid=153283&extra=</div>
+                </div>
+                <div id="SOHUCS" sid="17" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
