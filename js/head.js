@@ -1,4 +1,3 @@
-document.writeln("    <meta name=\'description\' content=\'夏目贵志のメモ帳,记录友人与你!\' />");
 document.writeln("    <meta http-equiv=\'X-UA-Compatible\' content=\'IE=edge\'>");
 document.writeln("    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'>");
 document.writeln("    <meta name=\'format-detection\' content=\'telephone=no\'>");
