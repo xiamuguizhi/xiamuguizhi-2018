@@ -21,51 +21,85 @@
                 <div class="am-article-bd">
                     <xmp>
 Windows用户
+
 XP的在C盘 C:WINDOWS/system32/drivers/etc 目录下的 hosts文件，我们用记事本打开后 修改里面的内容，添加内容到host文件中保存即可。
+
 ps: Win7、Win8等系统用户
+
 Win7及以后的系统涉及到管理员权限问题，需要用管理员身份运行记事本，再打开Host文件，进行修改
 
 其他用户的host文件位置：
+
 Android用户：首先必须root手机，然后安装root explorer管理器，打开进入/system/etc目录,长按host文件，弹出菜单拉到下面会看到“文本编辑器方式打开”。编辑输入即可
+
 Mac OS用户： host位置为：/private/etc/hosts
+
 iPhone用户：需越狱，使用 iFunBox、PP助手、同步助手、iFile 等访问设备文件系统，备份并修改该文件后覆盖：/etc/hosts
+
 Linux用户 : 修改/etc/hosts
 
 Linux用户 /etc/hosts文件修改后如何生效
+
 修改/etc/hosts之后正常情况应该是保存之后立即生效的，但是有时不是。使用uname -a 可以查看hostname是多少，就可以知道是否修改生效了。如果没有
+
 这时的策略有：
+
 1） 重启机器
+
 2） 重启服务
+     
       `Ubuntu: $sudo /etc/init.d/networking restart`
+      
      ` Gentoo: /etc/init.d/net.eth0 restart`
+     
 3）使用hostname命令
+       
         hostname 定义的主机名
 
 
 ps: hosts 不断更新ing...
+
 http://blog.my-eclipse.cn/host-google.html
 
 ps:
 hostname与/etc/hosts的关系
+
 很多人一提到更改hostname首先就想到修改/etc/hosts文件，认为hostname的配置文件就是/etc/hosts。其实不是的。
+
 hosts文件的作用相当如DNS，提供IP地址到hostname的对应。早期的互联网计算机少，单机hosts文件里足够存放所有联网计算机。 不过随着互联网的发展，这就远远不够了。于是就出现了分布式的DNS系统。由DNS服务器来提供类似的IP地址到域名的对应。具体可以man hosts。
+
 Linux系统在向DNS服务器发出域名解析请求之前会查询/etc/hosts文件，如果里面有相应的记录，就会使用hosts里面的记录。/etc /hosts文件通常里面包含这一条记录
+
 127.0.0.1    localhost.localdomain   localhost
+
 hosts文件格式是一行一条记录，分别是IP地址 hostname aliases，三者用空白字符分隔，aliases可选。
+
 127.0.0.1到localhost这一条建议不要修改，因为很多应用程序会用到这个，比如sendmail，修改之后这些程序可能就无法正常运行。
+
 
 附Ubuntu14.04 repo：
 ### aliyun repo
+
 deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+
 deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+
 deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+                   
                     </xmp>
 					<div class="am-alert am-alert-danger"><strong>转载自：</strong>http://blog.csdn.net/mikyz/article/details/69399987</div>
                 </div>
