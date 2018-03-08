@@ -41,6 +41,7 @@ document.getElementById('ty').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
+    {'link':'<a href="/post/18.html" target="_blank">Linux如何查看端口状态</a>'},  
     {'link':'<a href="/post/17.html" target="_blank">Realtek瑞昱RTL系列USB无线网卡驱动安装 </a>'},	  
     {'link':'<a href="/post/16.html" target="_blank">打造前端 Deepin Linux 工作环境——配置 XAMPP 集成环境</a>'},	  
     {'link':'<a href="/post/15.html" target="_blank">Linux_修改hosts</a>'},	
