@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Typecho 用一个程序建多个网站 - 夏目贵志</title><!-- 自己修改标题 -->
+    <meta name="description" content="RTL8188E/RTL8812A/RTL8821A/RTL8192E系列USB无线网卡驱动" />   	
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">Typecho 用一个程序建多个网站</h1>
+                 <p class="am-article-meta">2018年03月14日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+首先绑定两个域名（以下称 A域名 和 B域名）到空间目录上。
+
+接着把typecho上传到空间里，打开 A域名 时，typecho就会自动检测并开始安装，安装是请修改数据库表前缀为 A_ ，安装过程非常顺利。
+
+安装完后，把程序自动生成的文件config.inc.php下载下来备份，并删除服务器上的config.inc.php。
+
+然后，用 B域名 打开网站，此时，typecho会再度自动检测并开始安装，此时请修改数据库表前缀为 B_ ，安装过程也一样非常的顺利。
+
+再次把config.inc.php这个文件下载下来，对比前后两个文件，我们可以发现它们之间的区别就在于最后的数据库及表前缀的区别。
+
+这两个文件是非常的相似，那么我们就可以模仿wordpress，让它也能一个程序建多个站点了。
+
+```php
+if($_SERVER["HTTP_HOST"]=="A域名.com" || $_SERVER["HTTP_HOST"]=="www.A域名.com"){
+$db = new Typecho_Db('Mysql', 'A_');
+}
+else if($_SERVER["HTTP_HOST"]=="B域名.com" || $_SERVER["HTTP_HOST"]=="www.B域名.com"){
+$db = new Typecho_Db('Mysql', 'B_');
+}
+$db->addServer(array (
+'host' => 'localhost',
+'user' => '数据库用户名',
+'password' => '数据库密码',
+'charset' => 'utf8',
+'port' => '3306',
+'database' => '数据库名',
+), Typecho_Db::READ | Typecho_Db::WRITE);
+Typecho_Db::set($db);                  
+                   
+```             
+这样一来，虽然是同一个程序，但当用 A域名 打开时，它调用的是前缀为A_的数据，当用 B域名 打开时，它调用的是前缀为B_的数据            
+
+                    </xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>https://www.lvtao.net/dev/668.html</div>
+                </div>
+                <div id="SOHUCS" sid="19" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
