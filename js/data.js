@@ -32,6 +32,7 @@ document.getElementById('wz').innerHTML = json2html.transform(data,transform);
 var transform = {'tag':'li','html':'${link}'};  
   
 var data = [  
+    {'link':'<a href="/post/19.html" target="_blank">Typecho 用一个程序建多个网站</a>'},   
     {'link':'<a href="/post/11.html" target="_blank">Typecho 自定义分页样式</a>'},
     {'link':'<a href="/post/8.html" target="_blank">Typecho评论框代码/CSS</a>'}, 
 ];  
