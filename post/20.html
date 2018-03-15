@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Caddy - 方便够用的 HTTPS server 新手教程 - 夏目贵志</title><!-- 自己修改标题 -->
+    <meta name="description" content="deepin 搭建php开发环境（安装phalcon扩展）" />	
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title"> Caddy - 方便够用的 HTTPS server 新手教程</h1>
+                 <p class="am-article-meta">2018年03月15日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-18 am-u-md-19 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+说起HTTPserver，使用最广泛的就是apache和nginx了，功能都非常强大，但相对而言，学习它们的配置是有一定难度的。最近发现了一个golang开发的HTTPserver，叫做，它配置起来十分简便，甚至可以，而且对各种http新特性都支持的比较早（比如http2、quic都有支持）。因此对于不用于生产环境只搭建个人博客是十分友好的，我就简单介绍下caddy。
+
+##1.安装
+
+用过golang的应该都知道，golang程序基本上不会有各种依赖，都是光秃秃一个可执行程序，cp到
+
+/usr/local/bin
+
+就算安装完成了，所以说安装caddy是很简单的，我给出三种方法。
+
+##1.1脚本安装
+
+```
+curl -s https://getcaddy.com | bash
+```
+
+caddy官方给出了一个安装脚本，执行上面的命令就可以一键安装caddy，等执行结束后，使用
+
+whichcaddy ，可以看到caddy已经被安装到了/usr/local/bin/caddy
+
+##1.2手动安装
+
+点这个链接进入到caddy官网的下载界面，网页左侧可以选择平台和插件，如果在Linux服务器上使用的话，platform选择Linux64-bit就可以了，plugins如果暂时不需要的话，可以不选。然后点击下面的DOWNLOAD按钮，就下载到caddy了。同理，解压之后用cp命令放到
+
+/usr/local/bin/caddy
+
+就完成了安装。
+
+![image_1bn3mbk8jov2es3vu41l842ac9.png-177.7kB](https://ws1.sinaimg.cn/large/006eY07Igy1fpcd7lbafkj30yd0jin1t.jpg)
+
+##1.3源码安装
+
+```
+go get github.com/mholt/caddy/caddy
+```
+
+对于安装了golang编译器的同学，只需要执行goget就能到$GOPATH/bin里，是否cp到
+
+/usr/local/bin
+
+里就看心情了。使用源码安装可以安装到最新版本的caddy，功能上一般是最新的，而且因为是本地编译，性能可能会稍微高一些，但是可能会存在不稳定的现象。
+
+##2.1临时文件服务器
+
+Caddy的配置文件叫做，Caddy不强制你把配置文件放到哪个特定文件夹，默认情况下，把Caddyfile放到当前目录就可以跑起来了，如下：
+
+```
+
+echo 'localhost:8888' >> Caddyfile
+echo 'gzip' >> Caddyfile
+echo 'browse' >> Caddyfile
+caddy
+
+```
+
+在随便一个目录里执行上面代码，然后在浏览器里打开发现caddy已经启动了一个文件服务器。当临时需要一个fileserver的时候（比如共享文件），使用caddy会很方便。
+
+##2.2生产环境使用
+
+当然了，在生产环境使用的时候就不能这么草率的把配置文件放到当前目录了，一般情况下会放到
+
+/etc/caddy
+
+里。
+
+```
+
+sudo mkdir /etc/caddy
+sudo touch /etc/caddy/Caddyfile
+sudo chown -R root:www-data /etc/caddy
+
+```
+
+除了配置文件，caddy会自动生成ssl证书，需要一个文件夹放置ssl证书。
+
+```
+
+sudo mkdir /etc/ssl/caddy
+sudo chown -R www-data:root /etc/ssl/caddy
+sudo chmod 0770 /etc/ssl/caddy
+
+```
+
+因为ssl文件夹里会放置私钥，所以权限设置成770禁止其他用户访问。
+
+最后，创建一下放置网站文件的目录，如果已经有了，就不需要创建了。
+
+```
+
+sudo mkdir /var/www
+sudo chown www-data:www-data /var/www
+
+```
+
+创建好这些文件和目录了之后，我们需要把caddy配置成一个服务，这样就可以开机自动运行，并且管理起来也方便。因为目前大多数发行版都使用systemd了，所以这里只讲一下如何配置systemd，不过caddy也支持配置成原始的sysvinit服务，具体方法。
+
+```
+
+sudo curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service   # 从 github 下载 systemd 配置文件
+sudo systemctl daemon-reload        # 重新加载 systemd 配置
+sudo systemctl enable caddy.service # 设置 caddy 服务自启动
+sudo systemctl status caddy.service # 查看 caddy 状态
+
+```
+
+##3.Caddyfile
+
+基本的安装配置搞定之后，最重要的就是如何写Caddyfile了。可以直接
+
+vim/etc/caddy/Caddyfile
+
+来修改Caddyfile，也可以再自己电脑上改好然后rsync到服务器上。如果修改了Caddyfile发现没有生效，是需要执行一下
+
+sudosystemctlrestartcaddy.service
+
+来重启caddy的。
+
+##3.1Caddyfile的格式
+
+Caddfile的格式还是比较简单的，首先第一行必须是网站的地址，例如：
+
+```
+localhost:8080
+```
+
+```
+lengzzz.com
+```
+
+地址后面可以再跟一大堆指令（directive）。Caddyfile的基本格式就是这样，由一个网站地址和指令组成，是不是很简单。
+
+指令的作用是为网站开启某些功能。指令的格式有三种，先说一下最简单的不带参数的指令比如：
+
+```
+
+railgun.moe     # 没错，moe后缀的域名也可以哦
+gzip
+
+```
+
+第二行的gzip就是一个指令，它表示打开gzip压缩功能，这样网站在传输网页是可以降低流量。
+
+第二种指令的格式是带简单参数的指令：
+
+```
+
+railgun.moe
+gzip
+log /var/log/caddy/access.log
+tls lengz@lengzzz.com
+root /var/www/
+
+```
+
+第三行，log指令会为网站开启log功能，log指令后的参数告诉caddylog文件存放的位置。第四行的tls指令告诉caddy为网站开启https并自动申请证书，后面的email参数是告知CA申请人的邮箱。（caddy会默认使用let'sencrypt申请证书并续约，很方便吧）
+
+另外，简单参数也可能不只一个，比如redir指令：
+
+```
+
+railgun.moe
+gzip
+log /var/log/caddy/access.log
+tls /etc/ssl/cert.pem /etc/ssl/key.pem
+root /var/www/
+redir / https:///archive/{uri} 301
+
+```
+
+上面的redir指令带了三个参数，意思是把所有的请求使用301重定向到，这个指令在给网站换域名的时候很有用。另外tls指令变了，不单单传email一个参数，而是分别传了证书和私钥的路径，这样的话caddy就不会去自动申请证书，而是使用路径给出的证书了。
+
+在这个例子里还使用了这样的占位符（placeholder），详细的列表可以在这里查询到：。
+
+最后一种指令是带复杂参数的，这种指令包含可能很多参数，所以需要用一对花括号包起来，比如header指令：
+
+```
+
+railgun.moe
+gzip
+log /var/log/caddy/access.log
+tls lengz@lengzzz.com
+root /var/www/
+header /api {
+    Access-Control-Allow-Origin  *
+    Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    -Server
+}
+fastcgi / 127.0.0.1:9000 php {
+    index index.php
+}
+rewrite {
+    to {path} {path}/ /index.php?{query}
+}
+
+```
+
+6-10行的header指令代表为所有的的请求加上
+
+Access-Control-Allow-Origin和Access-Control-Allow-Methods
+
+这两个header，从而能支持javascript，第9行代表删除Serverheader，防止别人看到服务器类型。
+
+11-13行使用了fastcgi指令，代表把请求通过fastcgi传给php，ruby等后端程序。
+
+14-15行，使用了rewrite指令，这个指令的作用是**服务器内部重定向**在下面的参数后面，又跟了三个参数，这个功能上有点类似nginx的。告诉caddy需要先查看网址根目录/var/www里有没有{path}对应的文件，如果没有再查看有没有{path}对应的目录，如果都没有，则转发给index.php入口文件。这个功能一般会用在PHP的MVC框架上使用。
+
+随着一步步完善这个Caddyfile，目前这个版本的Caddyfaile已经可以直接在网站中使用了。
+
+##3.3多HOST网站
+
+刚才说的一直都是单个域名的网址，那么如果在同一个服务器上部署多个域名的网站呢？很简单，只需要在域名后面跟一个花括号扩起来就可以了，如下：
+
+```
+
+railgun.moe {
+    gzip
+    log /var/log/caddy/railgun_moe.log
+    tls lengz@lengzzz.com
+    root /var/www/
+    header /api {
+        Access-Control-Allow-Origin  *
+        Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        -Server
+    }
+    fastcgi / 127.0.0.1:9000 php {
+        index index.php
+    }
+    rewrite {
+        to {path} {path}/ /index.php?{query}
+    }
+}
+lengzzz.com {
+    tls lengz@lengzzz.com
+    log /var/log/caddy/.log
+    redir / https://railgun.moe/{uri} 301
+}
+
+```
+
+好了，基本的caddy配置就这些，详细的内容可以去官网上看文档学习。
+                    </xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>https://lengzzz.com/note/caddy-http-2-web-server-guide-for-beginners</div>
+                </div>
+                <div id="SOHUCS" sid="20" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
