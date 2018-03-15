@@ -19,7 +19,8 @@ document.getElementById('js').innerHTML = json2html.transform(data,transform);
 
 var transform = {'tag':'li','html':'${link}'};  
   
-var data = [  
+var data = [ 
+    {'link':'<a href="/post/20.html" target="_blank">Caddy - 方便够用的 HTTPS server 新手教程</a>'},  
     {'link':'<a href="/post/12.html" target="_blank">Brackets编辑器使用</a>'},
     {'link':'<a href="/post/5.html" target="_blank">纯JS版本伪春菜</a>'},	
     {'link':'<a href="/post/4.html" target="_blank">Nginx永久301跳转https写法</a>'},  
