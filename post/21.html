@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Linux下无法使用add-apt-repository命令 - 夏目贵志</title><!-- 自己修改标题 -->
+    <meta name="description" content="Linux下无法使用add-apt-repository命令" />   	
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">Linux下无法使用add-apt-repository命令</h1>
+                 <p class="am-article-meta">2018年03月19日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+##报错如下:
+`add-apt-repository command not found`
+
+##解决方案：
+```shell 
+sudo apt-get install python-software-properties
+sudo apt-get update
+```
+						
+##最后在执行：
+```shell 
+sudo apt install software-properties-common 
+sudo apt-get update
+```
+##Done.
+					</xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>http://blog.csdn.net/pfqian/article/details/54565191</div>
+                </div>
+                <div id="SOHUCS" sid="21" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
