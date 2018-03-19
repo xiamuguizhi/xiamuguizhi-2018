@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ubuntu中怎样添加或删除一个PPA源 - 夏目贵志</title><!-- 自己修改标题 -->
+    <meta name="description" content="ubuntu中怎样添加或删除一个PPA源" />   	
+    <script type="text/javascript" src="../js\head.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="am-g">
+                <h1><img src="https://ws1.sinaimg.cn/large/b07e5053gy1fooaf7zitqj20fr0gowid.jpg" height="200" width="200"></h1>
+                <h1 class="am-article-title">ubuntu中怎样添加或删除一个PPA源</h1>
+                 <p class="am-article-meta">2018年03月19日</p>
+        </div>
+    </div>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-lg-8 am-u-md-9 am-u-sm-centered">
+            <article class="am-article">
+                <div class="am-article-bd">
+                    <xmp>
+今天因为在ubuntu上安装java7，要用到ppa，就了解了一下怎样在ubuntu添加或删除一个PPA源
+
+PersonalPackageArchives（个人软件包档案）是UbuntuLaunchpad网站提供的一项服务，允许个人用户上传软件源代码，通过Launchpad进行编译并发布为2进制软件包，作为apt/新立得源供其他用户下载和更新。在Launchpad网站上的每一个用户和团队都可以拥有一个或多个PPA。
+
+PPA的一般形式是
+
+`ppa:user/ppa-name`
+
+添加PPA源的命令为：
+
+```sudoadd-apt-repositoryppa:user/ppa-name```
+
+也可以打开【软件中心】-&gt;【软件源】-&gt;【其他软件】，选择添加，在弹出的窗口中AT行里输入`ppa:user/ppa-name`格式的内容。
+
+例如，要添加一个用户名为eugenesan到java源中，则命令为
+
+```sudoadd-apt-repositoryppa:eugenesan/java```
+
+添加好更新一下：
+
+```sudoapt-getupdate```
+
+删除命令格式则为：
+
+```sudoadd-apt-repository-rppa:user/ppa-name```
+
+如
+
+```sudoadd-apt-repository-rppa:eugenesan/java```
+
+然后进入`/etc/apt/sources.list.d`目录，将相应ppa源的保存文件删除。
+
+最后同样更新一下。
+					</xmp>
+					<div class="am-alert am-alert-danger"><strong>转载自：</strong>http://www.maybe520.net/blog/457/</div>
+                </div>
+                <div id="SOHUCS" sid="22" ></div>
+            </article>
+            <a href="#top" id="cd" title="返回顶部" class="am-icon-btn am-icon-arrow-up am-active"></a>
+            <script type="text/javascript" src="../js\footer.js"></script>
+</body>
+<script type="text/javascript" src="../js\strapdown.min.js"></script>
+
+</html>
