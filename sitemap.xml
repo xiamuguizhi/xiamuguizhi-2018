@@ -134,7 +134,19 @@
 <priority>0.5</priority>
 <lastmod>2018-03-15</lastmod>
 <changefreq>weekly</changefreq>
-</url>       
+</url>
+ <url>
+<loc>http://xiamuyourenzhang.cn/post/21.html</loc>
+<priority>0.5</priority>
+<lastmod>2018-03-19</lastmod>
+<changefreq>weekly</changefreq>
+</url>  
+ <url>
+<loc>http://xiamuyourenzhang.cn/post/22.html</loc>
+<priority>0.5</priority>
+<lastmod>2018-03-19</lastmod>
+<changefreq>weekly</changefreq>
+</url>	
 </url>    
 </urlset>
 
